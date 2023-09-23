@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+
+<div class="row pt-5 d-block">
+    <form action="" method="post">
+        {% csrf_token %}
+    
+        {% for msg in messages %}
+        <div class="my-5 alert alert-danger" role="alert">
+            {{ msg }}
+        </div>
+        {% endfor %}
+        
+        <div class="pt-5 col-md-6">
+            <label for="">Enter Username: </label> <br>
+            <input class="" type="text" name="uname" id="" placeholder="Username here">
+        </div>
+    
+        <div class="col-md-6">
+            <label for="">Enter Password: </label> <br>
+            <input type="password" name="pswd" id="" placeholder="Password here">
+        </div>
+
+        <input type="submit" value="Login">
+    </form>
+</div>
+
+
+{% endblock 'content' %}

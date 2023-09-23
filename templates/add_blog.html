@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+
+<div class="py-5 container">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group my-5">
+            <label for="">Enter Title : </label> <br>
+            <input class="form-control" type="text" name="title" id="">
+        </div>
+        
+        <div class=" mt-5 form-group">
+            <label for="">Enter Category : </label> <br>
+            <select name="category" id="" class="form-control">
+                {% for category in categories %}
+                <option value="{{category.name}}">{{category.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class=" mt-5 form-group">
+            <label for="">Enter Description : </label> <br>
+            <textarea class="form-control" name="description" id="" cols="30" rows="10"></textarea>
+        </div>
+        
+        <div class="mt-5 form-group">
+            <label for="">Upload Image : </label> <br>
+            <input class="form-control" type="file" name="image" id="">
+        </div>
+
+        <input type="submit" value="Add">
+    </form>
+</div>
+
+{% endblock 'content' %}

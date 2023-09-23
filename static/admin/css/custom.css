@@ -1,0 +1,8 @@
+.author-thumbnail {
+    height: 200px !important;
+}
+
+.author-thumbnail img {
+    height: 100% !important;
+    width: 100% !important;
+}

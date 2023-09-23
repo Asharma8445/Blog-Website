@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+
+<div class="py-5 d-block row container">
+
+    {% for msg in messages %}
+    <div class="my-5 alert alert-danger" role="alert">
+        {{ msg }}
+    </div>
+    {% endfor %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="pt-5 col-md-6">
+            <label for="">Enter First Name: </label> <br>
+            <input class="" type="text" name="fname" id="" placeholder="First name here">
+        </div>
+
+        <div class="col-md-6">
+            <label for="">Enter Last Name: </label> <br>
+            <input type="text" name="lname" id="" placeholder="Last name here">
+        </div>
+
+        <div class="col-md-6">
+            <label for="">Enter Username: </label> <br>
+            <input type="text" name="uname" id="" placeholder="Username here">
+        </div>
+
+        <div class="col-md-6">
+            <label for="">Enter Email: </label> <br>
+            <input type="text" name="email" id="" placeholder="Email here">
+        </div>
+
+        <div class="col-md-6">
+            <label for="">Enter Password: </label> <br>
+            <input type="password" name="pswd1" id="" placeholder="Write password here">
+        </div>
+
+        <div class="col-md-6">
+            <label for="">Confirm Password: </label> <br>
+            <input type="password" name="pswd2" id="" placeholder="Confirm password here">
+        </div>
+
+        <input type="submit" value="Sign Up">
+    </form>
+</div>
+
+{% endblock 'content' %}

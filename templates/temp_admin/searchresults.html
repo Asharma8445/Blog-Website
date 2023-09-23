@@ -1,0 +1,25 @@
+{% extends 'temp_admin/base.html' %}
+{% load static %}
+{% block 'content' %}
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Author</th>
+        <th>Category</th>
+    </tr>
+
+    {% for result in results %}
+
+    <tr>
+        <td>{{ result.title|truncatewords:6 }}</td>
+        <td>{{ result.description|truncatewords:20 }}</td>
+        <td>{{ result.author.name }}</td>
+        <td>{{ result.category }}</td>
+    </tr>
+
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'temp_admin/base.html' %}
+{% load static %}
+{% block 'content' %}
+			    <div class="row g-3 mb-4 align-items-center justify-content-between">
+				    <div class="col-auto">
+			            <h1 class="app-page-title mb-0">Orders</h1>
+				    </div>
+				    <div class="col-auto">
+						<div class="actions">
+							<button class="btn btn-primary">Add New</button>
+						</div>
+				    </div><!--//col-auto-->
+			    </div><!--//row-->
+			   
+			    
+			    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+				    <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">Visible ({{ v_count }})</a>
+				    <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">Hidden ({{ h_count }})</a>
+				</nav>
+				
+				
+				<div class="tab-content" id="orders-table-tab-content">
+			        <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+					    <div class="app-card app-card-orders-table shadow-sm mb-5">
+						    <div class="app-card-body">
+							    <div class="table-responsive">
+							        <table class="table app-table-hover mb-0 text-left">
+										<thead>
+											<tr>
+												<th class="cell">Title</th>
+												<th class="cell">Description</th>
+												<th class="cell">Category</th>
+												<th class="cell">Author</th>
+												<th class="cell">Written on</th>
+												<th class="cell">Last edited</th>
+												<th class="cell"></th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for blog in visible %}
+											<tr>
+												<td class="cell">{{ blog.title|truncatewords:6 }}</td>
+												<td class="cell"><span 	class="truncate">{{ blog.description|truncatewords:30}}</span></td>
+												<td class="cell">{{ blog.category }}</td>
+												<td class="cell"><span>{{ blog.author.name }}</span></td>
+												<td class="cell"><span class="">{{ blog.created_at}}</span></td>
+												<td class="cell">{{ blog.edited_at}}</td>
+												<td class="cell"><a class="btn-sm app-btn-secondary" href="/superadmin/hide_blog/{{ blog.id }}">Hide</a></td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+						        </div><!--//table-responsive-->
+						       
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+						<nav class="app-pagination">
+							<ul class="pagination justify-content-center">
+								<li class="page-item disabled">
+									<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+							    </li>
+								<li class="page-item active"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item">
+								    <a class="page-link" href="#">Next</a>
+								</li>
+							</ul>
+						</nav><!--//app-pagination-->
+						
+			        </div><!--//tab-pane-->
+			        
+			        <div class="tab-pane fade" id="orders-paid" role="tabpanel" aria-labelledby="orders-paid-tab">
+					    <div class="app-card app-card-orders-table mb-5">
+						    <div class="app-card-body">
+							    <div class="table-responsive">
+								    
+							        <table class="table mb-0 text-left">
+										<thead>
+											<tr>
+												<th class="cell">Title</th>
+												<th class="cell">Description</th>
+												<th class="cell">Category</th>
+												<th class="cell">Author</th>
+												<th class="cell">Written on</th>
+												<th class="cell">Last edited</th>
+												<th class="cell"></th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for blog in hidden %}
+											<tr>
+												<td class="cell">{{ blog.title|truncatewords:6 }}</td>
+												<td class="cell"><span 	class="truncate">{{ blog.description|truncatewords:30}}</span></td>
+												<td class="cell">{{ blog.category }}</td>
+												<td class="cell"><span>{{ blog.author.name }}</span></td>
+												<td class="cell"><span class="">{{ blog.created_at}}</span></td>
+												<td class="cell">{{ blog.edited_at}}</td>
+												<td class="cell"><a class="btn-sm app-btn-secondary" href="/superadmin/unhide_blog/{{ blog.id }}">Unhide</a></td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+						        </div><!--//table-responsive-->
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+			        </div><!--//tab-pane-->
+				</div><!--//tab-content-->
+				{% endblock %}
